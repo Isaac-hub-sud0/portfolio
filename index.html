@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <title>Portfólio Futurista</title>
+  <link rel="shortcut icon" href="https://i.imgur.com/vjkKFSQ.png" />
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Rajdhani:wght@300;500;700&display=swap" rel="stylesheet">
+</head>
+<style>
+    :root {
+      --primary-color: #00f7ff;
+      --secondary-color: #e100ff;
+      --background-color: #0a0b1f;
+      --text-color: #ffffff;
+      --accent-color: #7b10ff;
+      --gradient-1: linear-gradient(135deg, rgba(0,247,255,0.15), rgba(225,0,255,0.15));
+      --gradient-2: linear-gradient(45deg, rgba(0,247,255,0.8), rgba(225,0,255,0.8));
+    }
+
+    body, html {
+      margin: 0;
+      padding: 0;
+      background-color: var(--background-color);
+      color: var(--text-color);
+      font-family: 'Rajdhani', sans-serif;
+      overflow-x: hidden;
+      scroll-behavior: smooth;
+    }
+
+    .futuristic-container {
+      perspective: 1500px;
+      background: radial-gradient(ellipse at bottom, #1b2735 0%, #090a0f 100%);
+      position: relative;
+    }
+
+    .futuristic-container::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAiIGhlaWdodD0iMjAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGNpcmNsZSBjeD0iMiIgY3k9IjIiIHI9IjEiIGZpbGw9InJnYmEoMjU1LDI1NSwyNTUsMC4xKSIvPjwvc3ZnPg==');
+      opacity: 0.3;
+      z-index: 0;
+    }
+
+    .navbar-futuristic {
+      background: var(--gradient-1);
+      padding: 20px;
+      backdrop-filter: blur(20px);
+      box-shadow: 0 4px 30px rgba(123,16,255,0.3);
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+
+    .nav-wrapper {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo-container h1 {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 2rem;
+      background: var(--gradient-2);
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin: 0;
+    }
+
+    .nav-links {
+      display: flex;
+      justify-content: center;
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .nav-links li {
+      margin: 0 25px;
+    }
+
+    .nav-links a {
+      color: var(--text-color);
+      text-decoration: none;
+      transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      position: relative;
+      padding: 5px 0;
+    }
+
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: var(--gradient-2);
+      transition: width 0.4s ease;
+    }
+
+    .nav-links a:hover {
+      color: var(--primary-color);
+    }
+
+    .nav-links a:hover::after {
+      width: 100%;
+    }
+
+    .hero-section {
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .holographic-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: var(--gradient-1);
+      animation: holographic-pulse 8s infinite alternate;
+      pointer-events: none;
+    }
+
+    .content-wrapper {
+      text-align: center;
+      z-index: 1;
+      padding: 0 20px;
+    }
+
+    .glitch-text {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 5rem;
+      text-transform: uppercase;
+      background: var(--gradient-2);
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+      text-shadow: 0 0 30px var(--accent-color);
+      margin-bottom: 30px;
+    }
+
+    .typewriter-text {
+      font-size: 2rem;
+      color: var(--text-color);
+      opacity: 0.9;
+      font-weight: 300;
+      letter-spacing: 3px;
+    }
+
+    .about-section {
+      padding: 100px 80px;
+      background: rgba(0,0,0,0.7);
+      position: relative;
+    }
+
+    .about-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      align-items: center;
+    }
+
+    .about-text {
+      background: var(--gradient-1);
+      padding: 40px;
+      border-radius: 20px;
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255,255,255,0.1);
+      box-shadow: 0 15px 45px rgba(123,16,255,0.2);
+    }
+
+    .about-text h2 {
+      font-family: 'Orbitron', sans-serif;
+      color: var(--primary-color);
+      font-size: 2.5rem;
+      margin-bottom: 20px;
+    }
+
+    .about-text p {
+      color: var(--text-color);
+      font-size: 1.2rem;
+      line-height: 1.8;
+      opacity: 0.9;
+    }
+
+    .about-image {
+      position: relative;
+      overflow: hidden;
+      border-radius: 20px;
+      box-shadow: 0 15px 45px rgba(123,16,255,0.3);
+    }
+
+    .about-image img {
+      width: 100%;
+      height: auto;
+      transform: scale(1.05);
+      transition: transform 0.5s ease;
+    }
+
+    .about-image:hover img {
+      transform: scale(1.1);
+    }
+
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 40px;
+      padding: 80px;
+      background: rgba(0,0,0,0.7);
+      position: relative;
+    }
+
+    .project-card {
+      background: var(--gradient-1);
+      border-radius: 20px;
+      padding: 30px;
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255,255,255,0.1);
+      box-shadow: 0 15px 45px rgba(123,16,255,0.2);
+      transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .project-card:hover {
+      transform: translateY(-10px) scale(1.02);
+      box-shadow: 0 25px 50px rgba(123,16,255,0.4);
+    }
+
+    .project-details h3 {
+      font-family: 'Orbitron', sans-serif;
+      color: var(--primary-color);
+      font-size: 1.8rem;
+      margin-bottom: 15px;
+    }
+
+    .project-details p {
+      color: var(--text-color);
+      font-size: 1.1rem;
+      line-height: 1.6;
+      opacity: 0.9;
+    }
+
+    @keyframes holographic-pulse {
+      0% { opacity: 0.3; transform: scale(1); }
+      50% { opacity: 0.5; transform: scale(1.02); }
+      100% { opacity: 0.3; transform: scale(1); }
+    }
+
+    @keyframes glitch {
+      0% { transform: translate(0); }
+      20% { transform: translate(-2px, 2px); filter: hue-rotate(90deg); }
+      40% { transform: translate(-2px, -2px); filter: hue-rotate(180deg); }
+      60% { transform: translate(2px, 2px); filter: hue-rotate(270deg); }
+      80% { transform: translate(2px, -2px); filter: hue-rotate(360deg); }
+      100% { transform: translate(0); filter: hue-rotate(0deg); }
+    }
+
+    .glitch-text:hover {
+      animation: glitch 0.5s infinite;
+    }
+
+    @keyframes typewriter {
+      from { width: 0; }
+      to { width: 100%; }
+    }
+
+    .letter {
+      opacity: 0;
+      animation: fadeIn 0.1s forwards;
+      animation-delay: calc(var(--index) * 0.1s);
+    }
+
+    @keyframes fadeIn {
+      to { opacity: 1; }
+    }
+</style>
+<body>
+  <div class="futuristic-container">
+    <nav class="navbar-futuristic">
+      <div class="nav-wrapper">
+        <div class="logo-container">
+          <h1>Meu Portfólio</h1>
+        </div>
+        <ul class="nav-links">
+          <li><a href="#home">Home</a></li>
+          <li><a href="#sobre">Sobre</a></li>
+          <li><a href="#projetos">Projetos</a></li>
+          <li><a href="#contato">Contato</a></li>
+        </ul>
+      </div>
+    </nav>
+
+    <section id="home" class="hero-section">
+      <div class="holographic-overlay"></div>
+      <div class="content-wrapper">
+        <h2 class="glitch-text">Desenvolvedor Tecnológico</h2>
+        <p class="typewriter-text">Criando experiências digitais do futuro</p>
+      </div>
+    </section>
+
+    <section id="sobre" class="about-section">
+      <div class="about-container">
+        <div class="about-text">
+          <h2>Sobre Mim</h2>
+          <p>Olá! Sou um desenvolvedor apaixonado por tecnologia e inovação. Com experiência em desenvolvimento web e soluções digitais, busco constantemente criar experiências únicas e impactantes.</p>
+          <p>Minha jornada na programação começou com a curiosidade de entender como as coisas funcionam no mundo digital, e desde então venho aprimorando minhas habilidades em diversas tecnologias e frameworks modernos.</p>
+          <p>Acredito que a tecnologia tem o poder de transformar vidas e negócios, e é isso que me motiva a criar soluções cada vez mais inovadoras e eficientes.</p>
+        </div>
+        <div class="about-image">
+          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS3Tn0v9y1iHw46iMuhGM0ANKzDdp1xDBfOAw&s" alt="Minha foto">
+        </div>
+      </div>
+    </section>
+
+    <section id="projetos" class="projects-grid">
+      <div class="project-card" data-tilt>
+        <div class="project-image"></div>
+        <div class="project-details">
+          <h3>Projeto Inovador</h3>
+          <p>Tecnologia de ponta em desenvolvimento</p>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vanilla-tilt@1.7.0/dist/vanilla-tilt.min.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      // Glitch Text Animation
+      const glitchTexts = document.querySelectorAll('.glitch-text');
+      glitchTexts.forEach(text => {
+        text.addEventListener('mouseover', () => {
+          text.classList.add('glitch');
+          setTimeout(() => text.classList.remove('glitch'), 1000);
+        });
+      });
+
+      // Typewriter Effect
+      const typewriterText = document.querySelector('.typewriter-text');
+      const letters = typewriterText.textContent.split('');
+      typewriterText.textContent = '';
+      letters.forEach((letter, index) => {
+        const span = document.createElement('span');
+        span.textContent = letter;
+        span.style.setProperty('--index', index);
+        span.classList.add('letter');
+        typewriterText.appendChild(span);
+      });
+
+      // Initialize Vanilla Tilt
+      VanillaTilt.init(document.querySelectorAll(".project-card"), {
+        max: 15,
+        speed: 400,
+        glare: true,
+        "max-glare": 0.5
+      });
+    });
+  </script>
+</body>
+</html>
